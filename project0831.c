@@ -1,35 +1,36 @@
-
+//4人の学生の3科目のテスト2回分の合計を求めて表示
 #include<stdio.h>
 
-#define NUMBER 3
-
-int min_of(int v[], int n)
+//4行3列の行列aとbの和をｃに格納する
+void mat_add(const int a[4][3], const int b[4][3], int c[4][3])
 {
-	int min = v[0];
-
-	for (int i = 1; i < n; i++)
-		if (v[i] < min)
-			min = v[i];
-	return min;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 3; j++)
+			c[i][j] = a[i][j] + b[i][j];
 }
+
+//4行3列の行列mを表示
+void mat_print(const int m[4][3])
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 3; j++)
+				printf("%d", m[i][j]);
+			putchar('\n');
+		}
+	}
 
 int main(void)
 {
-	int eng[NUMBER];
-	int mat[NUMBER];
+	int tensu1[4][3] = { {32, 34, 45}, {34, 45, 56}, {12, 23, 34}, {56, 67, 78} };
+	int tensu2[4][3] = { {32, 34, 45}, {34, 45, 56}, {12, 23, 34}, {56, 67, 78} };
+	int sum[4][3];
 
-	printf("%d人の点数を入力せよ。\n", NUMBER);
-	for (int i = 0; i < NUMBER; i++)
-	{
-		printf("[%d] 英語：", i + 1); scanf("%d", &eng[i]);
-		printf("[%d] 数学：", i + 1); scanf("%d", &mat[i]);
-	}
+	mat_add(tensu1, tensu2, sum);
 
-	int min_e = min_of(eng, NUMBER);
-	int min_m = min_of(mat, NUMBER);
-	
-	printf("英語の最低点=%d\n", min_e);
-	printf("数学の最低点=%d\n", min_m);
+	puts("1回目の点数"); mat_print(tensu1);
+	puts("2回目の点数"); mat_print(tensu2);
+	puts("合計点"); mat_print(sum);
 
 	return 0;
 }
