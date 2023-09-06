@@ -1,40 +1,26 @@
-//n行3列も2次元配列の全構成要素に同一値を代入
-
+//識別子の有効範囲を確認する
 #include<stdio.h>
 
-//int[3]型を要素型とする要素数nの配列mの全構成要素にvを代入
-void fill(int m[][3], int n, int v)
-{
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < 3; j++)
-			m[i][j] = v;
-}
+int x = 75;	//Aファイルの有効範囲
 
-//int[3]型を要素型とする要素数nの配列mの全構成要素の値を表示
-void mat_print(const int m[][3], int n)
+void print_x(void)
 {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < 3; j++)
-			printf("%4d", m[i][j]);
-		putchar('\n');
-	}
+	printf("x = %d\n", x);
 }
 
 int main(void)
 {
-	int no; 
-	int x[2][3] = { 0 };	//2行3列；要素型はint[3]型で要素数は２
-	int y[4][3] = { 0 };	//4行3列；要素型はint[3]型で要素数は４
+	int x = 999;	//Bブロック有効範囲
 
-	printf("全構成要素に代入する値：");
-	scanf("%d", &no);
+	print_x();
 
-	fill(x, 2, no);
-	fill(y, 4, no);
+	printf("x = %d\n", x);
 
-	printf("----x---\n");	mat_print(x, 2);
-	printf("----y---\n");	mat_print(y, 4);
+	for (int i = 0; i < 5; i++)
+	{
+		int x = i * 100;	//Cブロック有効範囲
+		printf("x = %d\n", x);
+	}
 
-	return 0;
+	printf("x = %d\n", x);
 }
