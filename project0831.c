@@ -1,26 +1,25 @@
-//識別子の有効範囲を確認する
+//児童記憶域期間と性的記憶域期間
 #include<stdio.h>
 
-int x = 75;	//Aファイルの有効範囲
+int fx = 0; //静的記憶域期間＋ファイル有効範囲
 
-void print_x(void)
+void func(void)
 {
-	printf("x = %d\n", x);
+	static int sx = 0; //静的記憶域期間＋ブロック有効範囲
+	int		ax = 0;    //自動記憶域期間＋ブロック有効範囲
+
+	printf("%3d%3d%3d\n", ax++, sx++, fx++);
 }
 
 int main(void)
 {
-	int x = 999;	//Bブロック有効範囲
+	int i;
 
-	print_x();
+	puts(" ax sx fx");
+	puts("----------");
+	for (i = 0; i < 10; i++)
+		func();
+	puts("-----------");
 
-	printf("x = %d\n", x);
-
-	for (int i = 0; i < 5; i++)
-	{
-		int x = i * 100;	//Cブロック有効範囲
-		printf("x = %d\n", x);
-	}
-
-	printf("x = %d\n", x);
+	return 0;
 }
