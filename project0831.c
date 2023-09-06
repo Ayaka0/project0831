@@ -1,25 +1,21 @@
-//児童記憶域期間と性的記憶域期間
+//静的記憶域期間をもつオブジェクトの暗黙の初期化を確認
+
 #include<stdio.h>
 
-int fx = 0; //静的記憶域期間＋ファイル有効範囲
-
-void func(void)
-{
-	static int sx = 0; //静的記憶域期間＋ブロック有効範囲
-	int		ax = 0;    //自動記憶域期間＋ブロック有効範囲
-
-	printf("%3d%3d%3d\n", ax++, sx++, fx++);
-}
+int fx;	//0で初期化される
 
 int main(void)
 {
-	int i;
+	static int si; //0で初期化される
+	static double sd; //0.0で初期化される
+	static int sa[5]; //全要素が０で初期化される
 
-	puts(" ax sx fx");
-	puts("----------");
-	for (i = 0; i < 10; i++)
-		func();
-	puts("-----------");
+	printf("fx = %d\n", fx);
+	printf("si = %d\n", si);
+	printf("sd = %f\n", sd);
+
+	for (int i = 0; i < 5; i++)
+		printf("sa[%d] = %d\n", i, sa[i]);
 
 	return 0;
 }
