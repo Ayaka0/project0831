@@ -1,36 +1,40 @@
-//4人の学生の3科目のテスト2回分の合計を求めて表示
+//n行3列も2次元配列の全構成要素に同一値を代入
+
 #include<stdio.h>
 
-//4行3列の行列aとbの和をｃに格納する
-void mat_add(const int a[4][3], const int b[4][3], int c[4][3])
+//int[3]型を要素型とする要素数nの配列mの全構成要素にvを代入
+void fill(int m[][3], int n, int v)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < n; i++)
 		for (int j = 0; j < 3; j++)
-			c[i][j] = a[i][j] + b[i][j];
+			m[i][j] = v;
 }
 
-//4行3列の行列mを表示
-void mat_print(const int m[4][3])
+//int[3]型を要素型とする要素数nの配列mの全構成要素の値を表示
+void mat_print(const int m[][3], int n)
+{
+	for (int i = 0; i < n; i++)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 3; j++)
-				printf("%d", m[i][j]);
-			putchar('\n');
-		}
+		for (int j = 0; j < 3; j++)
+			printf("%4d", m[i][j]);
+		putchar('\n');
 	}
+}
 
 int main(void)
 {
-	int tensu1[4][3] = { {32, 34, 45}, {34, 45, 56}, {12, 23, 34}, {56, 67, 78} };
-	int tensu2[4][3] = { {32, 34, 45}, {34, 45, 56}, {12, 23, 34}, {56, 67, 78} };
-	int sum[4][3];
+	int no; 
+	int x[2][3] = { 0 };	//2行3列；要素型はint[3]型で要素数は２
+	int y[4][3] = { 0 };	//4行3列；要素型はint[3]型で要素数は４
 
-	mat_add(tensu1, tensu2, sum);
+	printf("全構成要素に代入する値：");
+	scanf("%d", &no);
 
-	puts("1回目の点数"); mat_print(tensu1);
-	puts("2回目の点数"); mat_print(tensu2);
-	puts("合計点"); mat_print(sum);
+	fill(x, 2, no);
+	fill(y, 4, no);
+
+	printf("----x---\n");	mat_print(x, 2);
+	printf("----y---\n");	mat_print(y, 4);
 
 	return 0;
 }
